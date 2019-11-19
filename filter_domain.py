@@ -1,7 +1,7 @@
 import sys, re, json
 
 def filter(filterList):
-    pattern = "\|\|.+?\^"
+    pattern = "\|\|[a-zA-Z0-9.]+?\^"
     pre = "*://*."
     lines = filterList.read().splitlines()
     domains = []

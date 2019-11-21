@@ -4,6 +4,8 @@ chrome.webRequest.onBeforeRequest.addListener(
 		console.log("blocking:", details.url);
 		return {cancel: enabled};
 	},
-	{urls: blocked_domains},
+	//should change to pass filter() some other list
+	//possibly some section of the fanboy list, instead of blocked_domains
+	{urls: filter(blocked_domains)},
     ["blocking"]
 );

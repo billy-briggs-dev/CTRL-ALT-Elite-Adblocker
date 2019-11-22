@@ -5,8 +5,8 @@
 //returns another array of strings
 function filter(filterlist){
     var whatever = filterlist.split("\n");
-    var reg3 = /^\|\|[a-zA-Z0-9./]+?\^\$third-party$/ //third party pattern
-    var reg1 = /^\|\|[a-zA-Z0-9./]+?\.(net|com)\^$/ //simple domain
+    var reg3 = /^\|\|[a-zA-Z0-9./]+?\^\$third-party*$/ //third party pattern
+    var reg1 = /^\|\|[a-zA-Z0-9./]+?\.(net|com)\^*$/ //simple domain
     var pre = "*://*."
     var domains = [];
 
@@ -25,13 +25,8 @@ function filter(filterlist){
             x = line.search(reg1);
             if (x != -1){
                 domain = line.slice(x+2);
-                //domain = x.group()[2:];
-                while(domain[len(domain) - 1] == '^'){
+                if(domain[domain.length - 1] == '^'){
                     domain = domain.slice(0,-1);
-                    //domain = domain[:-1];
-                    if(len(domain) < 2){
-                        break;
-                    }
                 }
                 domain = pre + domain + "/*";
                 //alert("domain: " +domain);

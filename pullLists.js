@@ -5,6 +5,6 @@ urls = ["http://easylist-downloads.adblockplus.org/antiadblockfilters.txt",
 lists = [];
 for (var i = 0; i < urls.length; ++i) {
     fetch(urls[i]).then(r => r.text()).then(result => {
-        lists.push(result);
+        lists.push(JSON.stringify(result));
     });
 }

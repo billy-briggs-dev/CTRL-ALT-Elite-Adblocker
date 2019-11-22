@@ -1,10 +1,10 @@
 {
-  "name": "ChromeExtension",
-  "version": "1.0",
-  "description": "A simple adblocker",
+  "name": "CS455 Adblocker",
+  "version": "3.0",
+  "description": "A simple adblocker for CS455",
   "permissions": ["webRequest", "webRequestBlocking", "http://*/", "https://*/"],
   "background": {
-    "scripts": ["background.js", "pullLists.js"]
+    "scripts": ["blocked_domains.js","filter_domain.js", "background.js", "pullLists.js"]
   },
   "browser_action": {
     "default_popup": "popup.html"

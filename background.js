@@ -7,6 +7,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 	},
 	//should change to pass filter() some other list
 	//possibly some section of the fanboy list, instead of blocked_domains
-	{urls: filter(list)},
+	{urls: create_master_list(filter(list), filter(list), filter(list), filter(list))},
     ["blocking"]
 );
+//alert("background loaded");

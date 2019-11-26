@@ -9,5 +9,8 @@ window.onload = function () {
         updateLabel();
         chrome.tabs.reload();
 	};
+	document.getElementById('refresh').onclick = function () {
+		chrome.runtime.reload();
+	};
 	updateLabel();
 }

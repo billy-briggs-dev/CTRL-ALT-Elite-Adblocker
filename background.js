@@ -1,4 +1,19 @@
 var enabled = true;
+var lists = [];
+
+//function WriteFile(location, str)
+//{
+
+//var fh = fopen(location, 3); // Open the file for writing
+
+//if(fh!=-1) // If the file has been successfully opened
+//{
+//    fwrite(fh, str); // Write the string to a file
+//    fclose(fh); // Close the file
+//}
+
+//}
+
 
 function get_list(path, callback) {
     var xhr = new XMLHttpRequest();
@@ -24,13 +39,32 @@ function handleFileData(fileData) {
         return;
 	}
     alert("fileData: " + fileData);
-		//masterlist = create_master_list(filter(fileData), filter(fileData), filter(fileData), filter(fileData));
-		//return masterlist;
+    //WriteFile(chrome.runtime.getURL("0131-block-list.txt"), fileData)    
+    //masterlist = create_master_list(filter(fileData), filter(fileData), filter(fileData), filter(fileData));
+    lists.push(fileData);
+    localStorage.setItem("list1", fileData);
+    alert("in function storage: " + localStorage.getItem("list1"));
+    return fileData;
 	}
 
 get_list("https://austinhuang.me/0131-block-list/list.txt", handleFileData);
+//await wait(5000);
+setTimeout(function(){ 
+    alert("It works! " + localStorage.getItem("list1"));
+    alert("list storage " + lists.pop())
+}, 15000);
+alert("zero wait " + localStorage.getItem("list1"));
 
-
+//fh = fopen(chrome.runtime.getURL("0131-block-list.txt", 0)); // Open the file for reading
+//if(fh!=-1) // If the file has been successfully opened
+//{
+//    length = flength(fh);         // Get the length of the file    
+//    str = fread(fh, length);     // Read in the entire file
+//    fclose(fh);                    // Close the file
+    
+// Display the contents of the file    
+//    alert("It works!: " + write(str));    
+//}
 
 
 //alert("filter url: " + chrome.runtime.getURL("0131-block-list.txt"));

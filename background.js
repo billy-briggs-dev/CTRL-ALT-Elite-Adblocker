@@ -38,22 +38,27 @@ function handleFileData(fileData) {
         // Show error
         return;
 	}
-    alert("fileData: " + fileData);
+    ///alert("fileData: " + fileData);
     //WriteFile(chrome.runtime.getURL("0131-block-list.txt"), fileData)    
     //masterlist = create_master_list(filter(fileData), filter(fileData), filter(fileData), filter(fileData));
     lists.push(fileData);
     localStorage.setItem("list1", fileData);
-    alert("in function storage: " + localStorage.getItem("list1"));
+    ///alert("in function storage: " + localStorage.getItem("list1"));
     return fileData;
 	}
 
 get_list("https://austinhuang.me/0131-block-list/list.txt", handleFileData);
+get_list("https://easylist-downloads.adblockplus.org/fb_annoyances_full.txt", handleFileData);
+get_list("https://easylist-downloads.adblockplus.org/antiadblockfilters.txt", handleFileData);
+get_list("https://www.fanboy.co.nz/r/fanboy-complete.txt", handleFileData);
 //await wait(5000);
 setTimeout(function(){ 
     alert("It works! " + localStorage.getItem("list1"));
-    alert("list storage " + lists.pop())
-}, 15000);
-alert("zero wait " + localStorage.getItem("list1"));
+    alert("list storage " + lists[0]);
+    localStorage.setItem("masterlist", String(create_master_list(filter(lists[0]), filter(lists[1]), filter(lists[2]), filter(lists[3]))));
+    alert("local masterlist: " + localStorage.getItem("masterlist"));
+}, 2000);
+//alert("zero wait " + localStorage.getItem("list1"));
 
 //fh = fopen(chrome.runtime.getURL("0131-block-list.txt", 0)); // Open the file for reading
 //if(fh!=-1) // If the file has been successfully opened
@@ -69,15 +74,17 @@ alert("zero wait " + localStorage.getItem("list1"));
 
 //alert("filter url: " + chrome.runtime.getURL("0131-block-list.txt"));
 
-var list = "||sdasasyydd.com^$third-party\n||sdfsdvc.com^$third-party\n||seaofads.com^$third-party\n||search123.uk.com^$third-party\n||apopgo.com^";
+//var list = "||sdasasyydd.com^$third-party\n||sdfsdvc.com^$third-party\n||seaofads.com^$third-party\n||search123.uk.com^$third-party\n||apopgo.com^";
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
-		console.log("blocking:", details.url);
-		return {cancel: enabled};
+        console.log("blocking:", details.url);
+        alert("in webrequest " + localStorage.getItem("masterlist"));
+        return {cancel: enabled};
 	},
 	//should change to pass filter() some other list
-	//possibly some section of the fanboy list, instead of blocked_domains
-	{urls: create_master_list(filter(list), filter(list), filter(list), filter(list))},
+    //possibly some section of the fanboy list, instead of blocked_domains
+    
+	{urls: (localStorage.getItem("masterlist")).split(',')}
     ["blocking"]
 );
 //alert("background loaded");

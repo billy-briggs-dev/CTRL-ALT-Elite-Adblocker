@@ -1,4 +1,4 @@
-# CTRL ALT ELITE Adblocker
+# CTRL ALT Elite Adblocker
 Adblocker project for CS455 @ Truman State University
 
 Credits: Katy Cryts, Katherine Durant, Liting Zhang, William Briggs

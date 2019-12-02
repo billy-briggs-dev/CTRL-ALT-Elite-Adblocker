@@ -17,4 +17,4 @@ Step-by-step deployment:
 
 7. Click on “Load unpacked” in the top left corner
 
-8 Select the folder that the extension is located in the extension should now be running! Click the refresh button in the extension if you would like to update the master filter list that is being used. Click the disable button if you would like to turn off the extension.
+8. Select the folder that the extension is located in the extension should now be running! Click the refresh button in the extension if you would like to update the master filter list that is being used. Click the disable button if you would like to turn off the extension.

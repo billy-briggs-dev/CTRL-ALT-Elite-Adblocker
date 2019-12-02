@@ -1,12 +1,24 @@
 var enabled = true;
-var list = "||sdasasyydd.com^$third-party\n||sdfsdvc.com^$third-party\n||seaofads.com^$third-party\n||search123.uk.com^$third-party";
+
+function select_list(){
+    if (localStorage.getItem("masterlist") == null){
+        alert("null");
+        return blocked_domains;    
+    }
+    else{
+        alert("set");
+        return localStorage.getItem("masterlist").split(",");   
+    }
+    }
+
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
-		console.log("blocking:", details.url);
-		return {cancel: enabled};
+        console.log("blocking:", details.url);
+        return {cancel: enabled};
 	},
-	//should change to pass filter() some other list
-	//possibly some section of the fanboy list, instead of blocked_domains
-	{urls: create_master_list(filter(list), filter(list), filter(list), filter(list))},
+    
+	{urls: select_list()},
     ["blocking"]
 );
+
+//if (localStorage.getItem("masterlist") == null){blocked_domains; alert("null")}else{localStorage.getItem("masterlist").split(","); alert("set");};
